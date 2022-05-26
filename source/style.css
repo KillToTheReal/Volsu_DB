@@ -1,7 +1,39 @@
-.wrapper{
+.wrapper-main{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     width: 100vw;
+
+    height: 100%;
+}
+
+.btncol
+{
+    display:inherit; 
+    flex-direction:column; 
+    align-items:center;
+     width:30vw;
+      padding-top:20px; 
+      height:100% 
+}
+.btncol *
+{   
+    margin-bottom: 20px;
+    min-width: 400px;
+}
+
+
+
+button {
+    min-width: 200px;
+}
+
+a{
+    outline: none;
+    text-decoration: none;
+    color:#000;
+}
+a:hover{
+    color:#fff
 }

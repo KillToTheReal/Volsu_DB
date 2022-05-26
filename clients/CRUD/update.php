@@ -5,6 +5,6 @@ $id = $_POST['item0'];
 $name = $_POST['item1'];
 $mail = $_POST['item2'];
 
-mysqli_query($mysql,"UPDATE clients SET clientname = '$name', client_mail = '$mail' WHERE client_id='$id' ");
+mysqli_query($mysql,"UPDATE clients SET clientname = '$name', client_mail = '$mail' WHERE idclients='$id' ");
 header('Location: ../clients.php');
 ?>
