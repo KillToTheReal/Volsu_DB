@@ -21,6 +21,25 @@ $i = 1;
 </head>
 <body>
     
+    <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../"> Home </a>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav me-auto mb-12 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="../clients/clients.php">Clients </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="../suppliers/suppliers.php">Suppliers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="../storage/storage.php">Storage</a>
+                        </li>
+                    </ul>    
+                </div>
+            </div>
+        </nav>
+
         <table class="table">
             <thead class="thead-light">
                 <tr>

@@ -29,7 +29,10 @@ $i = 1;
                         <a class="nav-link active" href="../clients/clients.php">Clients </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Suppliers</a>
+                        <a class="nav-link active" aria-current="page" href="../suppliers/suppliers.php">Suppliers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="../storage/storage.php">Storage</a>
                     </li>
                 </ul>    
             </div>
