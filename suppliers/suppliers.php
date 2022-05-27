@@ -21,11 +21,18 @@ $i = 1;
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container">
+        <div class="container-fluid">
             <a class="navbar-brand" href="../"> Home </a>
-        </div>
-        <div class="collapse navbar-collapse">
-            <a class="" href="../clients/clients.php">Clients </a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto mb-12 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../clients/clients.php">Clients </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Suppliers</a>
+                    </li>
+                </ul>    
+            </div>
         </div>
     </nav>
     
@@ -92,6 +99,9 @@ $i = 1;
             </div>
         </form>
     </div>
+
+    <script src="./js/formcheck.js" type="text/javascript"></script>
+    <script src ="./js/updatecheck.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
