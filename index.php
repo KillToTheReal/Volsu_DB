@@ -13,7 +13,7 @@
         <div class="btncol">
            <a href="./clients/clients.php" role="button" class="btn btn-outline-dark">Clients table</a>
            <a href="./suppliers/suppliers.php" role="button" class="btn btn-outline-dark">Suppliers table</a>
-           <a href="./clients/clients.php" role="button" class="btn btn-outline-dark">Clients table</a>
+           <a href="./storage/storage.php" role="button" class="btn btn-outline-dark">Storage table</a>
         </div>
     </div>
 </body>
