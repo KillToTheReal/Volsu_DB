@@ -13,9 +13,9 @@
     display:inherit; 
     flex-direction:column; 
     align-items:center;
-     width:30vw;
-      padding-top:20px; 
-      height:100% 
+    width:30vw;
+    padding-top:20px; 
+    height:100% 
 }
 .btncol *
 {   
@@ -23,7 +23,10 @@
     min-width: 400px;
 }
 
-
+.error{
+    border: 3px solid #f00;
+    color: #f00;
+}
 
 button {
     min-width: 200px;

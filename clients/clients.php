@@ -15,7 +15,8 @@ $i = 1;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="../source/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../source/style.css"/>
     <title>Document</title>
 </head>
 <body>
@@ -40,16 +41,19 @@ $i = 1;
                     echo('<tr>');
                     echo('<th scope="row">'.$i.'</th>');
                     ?>
-                    <form action="CRUD/update.php" method="POST">
+                    <form action="CRUD/update.php" class="formtb" method="POST" id=<?php echo("tb".$key) ?>>
                     <?php
                     foreach($val as $data){
                         if($j == 0)
                         {
-                            echo('<td> <input type="text" disabled name="'."item".$j.'" placeholder="'.$data.'" value="'.$data.'"></td>');
+
                             echo('<input type="hidden" name="'."item".$j.'"value="'.$data.'">');
+                            echo('<td> <input type="text" disabled  name="'."item".$j.'" placeholder="'.$data.'" value="'.$data.'">');
+                            echo('<div id='."errorstb".$key.'></div>');
+                            echo('</td>');
                         }
                         else{
-                            echo('<td> <input type="text" name="'."item".$j.'" placeholder="'.$data.'" value="'.$data.'"></td>');
+                            echo('<td> <input type="text" id="'."idtb".$j.$key.'" name="'."item".$j.'" placeholder="'.$data.'" value="'.$data.'"></td>');
                         }
                         $j++;
 
@@ -65,22 +69,78 @@ $i = 1;
             </tbody>
         </table>
         <div class="container">
-        <form action="./CRUD/create.php" method="POST"> 
-            <div style="display:flex;" class="form-row align-items-center">
-                <?php
-                    for($i = 2; $i <= sizeof($vals); $i++){       
-                ?>  
+            <form action="./CRUD/create.php" method="POST" id="form"> 
+                <div style="display:flex;" class="form-row align-items-center">
+                    <?php
+                        for($i = 2; $i <= sizeof($vals); $i++){       
+                    ?>  
+                        <div class="col-auto">
+                        
+                            <label class="sr-only" for="inlineFormInput" ><?=$fields[$i]?></label>
+                            <input type="text" class="form-control mb-2" name="name_<?=$i?>" required  id="id_<?=$i?>" placeholder="<?=$fields[$i]?>">       
+                        </div> 
+                    <?php }?>
                     <div class="col-auto">
-                        <label class="sr-only" for="inlineFormInput"><?=$fields[$i]?></label>
-                        <input type="text" class="form-control mb-2" name="name_<?=$i?>" placeholder="<?=$fields[$i]?>">       
-                    </div> 
-                <?php }?>
-                <div class="col-auto">
-                    <button type="submit" class="btn btn-primary mb-2">Submit</button>
-                </div>  
-            </div>
-        </form>
-    </div>
+                        <button type="submit" class="btn btn-primary mb-2" action=>Submit</button>
+                    </div>  
+                </div>
+                <div id="errors"></div>
+            </form>
+        </div>
+
+
+    <script type="text/javascript">
+        const form = document.getElementById("form");
+        const err = document.getElementById('errors');
+        const reg = new RegExp(/\w+@\w+.\w+/,"gm");
+        form.addEventListener('submit',(e)=>{
+            const mailfield = document.getElementById("id_3");
+            const namefield = document.getElementById("id_2");
+            let got_err = false;
+            if(!reg.test(mailfield.value)){
+                mailfield.classList.add("error");
+                err.innerText += " Некорректно введён email. Шаблон *@*.* \n";
+                got_err = true;
+            }
+            if(namefield.value.length < 4){
+                err.innerText += " Некорректно введёно имя пользователя. Имя должно быть >3 символов в длину. \n";
+                got_err = true;
+            }
+            if(got_err){
+                e.preventDefault();
+            }
+        });
+    </script>
+
+    <script type="text/javascript">
+        const formtb = document.getElementsByClassName("formtb");
+        for(i = 0; i < formtb.length; i++){
+            let err = "errorstb"+i.toString() 
+            const errtb = document.getElementById(err);
+            const form = document.getElementById("tb"+i.toString())
+            let name = "idtb1"+i.toString()
+            let email = "idtb2"+i.toString()
+            const mailfield = document.getElementById(email);
+            const namefield = document.getElementById(name);
+            form.addEventListener('submit',(e)=>{
+                errtb.innerText = ''
+                let got_err = false
+                if(!reg.test(mailfield.value)){
+                    mailfield.classList.add("error")
+                    errtb.innerText += " Некорректно введён email. Шаблон *@*.* \n"
+                    got_err = true
+                }
+                if(namefield.value.length < 4){
+                    errtb.innerText += " Некорректно введёно имя пользователя. Имя должно быть >3 символов в длину. \n"
+                    got_err = true
+                }
+                if(got_err){
+                    e.preventDefault()
+                }
+            
+            })}
+
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
