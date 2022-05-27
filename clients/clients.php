@@ -41,12 +41,11 @@ $i = 1;
                     echo('<tr>');
                     echo('<th scope="row">'.$i.'</th>');
                     ?>
-                    <form action="CRUD/update.php" class="formtb" method="POST" id=<?php echo("tb".$key) ?>>
+                    <form action="CRUD/update.php" class="formtb" method="POST" id=<?php echo("tb".$key)?> >
                     <?php
                     foreach($val as $data){
                         if($j == 0)
                         {
-
                             echo('<input type="hidden" name="'."item".$j.'"value="'.$data.'">');
                             echo('<td> <input type="text" disabled  name="'."item".$j.'" placeholder="'.$data.'" value="'.$data.'">');
                             echo('<div id='."errorstb".$key.'></div>');
@@ -89,63 +88,8 @@ $i = 1;
         </div>
 
 
-    <script type="text/javascript">
-        const form = document.getElementById("form");
-        const err = document.getElementById('errors');
-        const reg = new RegExp(/\w+@\w+\.\w+/,"gm");
-        form.addEventListener('submit',(e)=>{
-            const mailfield = document.getElementById("id_3");
-            const namefield = document.getElementById("id_2");
-            mailfield.classList.remove("error")
-            namefield.classList.remove("error")
-            let got_err = false;
-            if(!reg.test(mailfield.value)){
-                mailfield.classList.add("error")
-                err.innerText += " Некорректно введён email. Шаблон *@*.* \n"
-                got_err = true;
-            }
-            if(namefield.value.length < 4){
-                err.innerText += " Некорректно введёно имя пользователя. Имя должно быть >3 символов в длину. \n"
-                got_err = true
-            }
-            if(got_err){
-                e.preventDefault();
-            }
-        });
-    </script>
-
-    <script type="text/javascript">
-        const formtb = document.getElementsByClassName("formtb");
-        for(i = 0; i < formtb.length; i++){
-            let err = "errorstb"+i.toString() 
-            const errtb = document.getElementById(err);
-            const form = document.getElementById("tb"+i.toString())
-            let name = "idtb1"+i.toString()
-            let email = "idtb2"+i.toString()
-            const mailfield = document.getElementById(email);
-            const namefield = document.getElementById(name);
-            form.addEventListener('submit',(e)=>{
-                mailfield.classList.remove("error")
-                namefield.classList.remove("error")
-                errtb.innerText = ''
-                let got_err = false
-                if(!reg.test(mailfield.value)){
-                    mailfield.classList.add("error")
-                    errtb.innerText += " Некорректно введён email. Шаблон *@*.* \n"
-                    got_err = true
-                }
-                if(namefield.value.length < 4){
-                    namefield.classList.add("error")
-                    errtb.innerText += " Некорректно введёно имя пользователя. Имя должно быть >3 символов в длину. \n"
-                    got_err = true
-                }
-                if(got_err){
-                    e.preventDefault()
-                }
-            
-            })}
-
-    </script>
+    <script src="./js/formcheck.js" type="text/javascript"></script>
+    <script src ="./js/updatecheck.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
