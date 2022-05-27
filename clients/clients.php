@@ -92,19 +92,21 @@ $i = 1;
     <script type="text/javascript">
         const form = document.getElementById("form");
         const err = document.getElementById('errors');
-        const reg = new RegExp(/\w+@\w+.\w+/,"gm");
+        const reg = new RegExp(/\w+@\w+\.\w+/,"gm");
         form.addEventListener('submit',(e)=>{
             const mailfield = document.getElementById("id_3");
             const namefield = document.getElementById("id_2");
+            mailfield.classList.remove("error")
+            namefield.classList.remove("error")
             let got_err = false;
             if(!reg.test(mailfield.value)){
-                mailfield.classList.add("error");
-                err.innerText += " Некорректно введён email. Шаблон *@*.* \n";
+                mailfield.classList.add("error")
+                err.innerText += " Некорректно введён email. Шаблон *@*.* \n"
                 got_err = true;
             }
             if(namefield.value.length < 4){
-                err.innerText += " Некорректно введёно имя пользователя. Имя должно быть >3 символов в длину. \n";
-                got_err = true;
+                err.innerText += " Некорректно введёно имя пользователя. Имя должно быть >3 символов в длину. \n"
+                got_err = true
             }
             if(got_err){
                 e.preventDefault();
@@ -123,6 +125,8 @@ $i = 1;
             const mailfield = document.getElementById(email);
             const namefield = document.getElementById(name);
             form.addEventListener('submit',(e)=>{
+                mailfield.classList.remove("error")
+                namefield.classList.remove("error")
                 errtb.innerText = ''
                 let got_err = false
                 if(!reg.test(mailfield.value)){
@@ -131,6 +135,7 @@ $i = 1;
                     got_err = true
                 }
                 if(namefield.value.length < 4){
+                    namefield.classList.add("error")
                     errtb.innerText += " Некорректно введёно имя пользователя. Имя должно быть >3 символов в длину. \n"
                     got_err = true
                 }
