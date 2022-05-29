@@ -1,6 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.29, for Linux (x86_64)
+CREATE DATABASE  IF NOT EXISTS `mydb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `mydb`;
+-- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
--- Host: localhost    Database: mydb
+-- Host: 127.0.0.1    Database: mydb
 -- ------------------------------------------------------
 -- Server version	8.0.29
 
@@ -24,10 +26,11 @@ DROP TABLE IF EXISTS `clients`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `clients` (
   `idclients` int NOT NULL AUTO_INCREMENT,
-  `clientname` varchar(45) DEFAULT NULL,
+  `clientname` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8_general_ci NOT NULL,
+  `client_mail` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`idclients`),
   UNIQUE KEY `idclients_UNIQUE` (`idclients`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +39,7 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
-INSERT INTO `clients` VALUES (1,''),(2,'123');
+INSERT INTO `clients` VALUES (1,'KillReal12','killreal@gmail.com'),(2,'zcxzx','123zxc@gmail.com'),(3,'Name','Mail.mail@mail.ru'),(12,'123z','123@mail.ru'),(13,'xczc','123@gmail.com'),(14,'1233','zxc@zxc.com');
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -118,7 +121,7 @@ CREATE TABLE `storage` (
   `current_price` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`item_id`),
   UNIQUE KEY `item_id_UNIQUE` (`item_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,6 +130,7 @@ CREATE TABLE `storage` (
 
 LOCK TABLES `storage` WRITE;
 /*!40000 ALTER TABLE `storage` DISABLE KEYS */;
+INSERT INTO `storage` VALUES (1,'Pencilsz',123123,'9632'),(2,'Paper',200,'600'),(3,'Boxes',123,'123'),(4,'Name',20,'200'),(5,'Inflatable Dicks',12,'500');
 /*!40000 ALTER TABLE `storage` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,9 +144,10 @@ DROP TABLE IF EXISTS `suppliers`;
 CREATE TABLE `suppliers` (
   `idsuppliers` int NOT NULL AUTO_INCREMENT,
   `suppliername` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8_general_ci NOT NULL,
+  `suppliermail` varchar(100) NOT NULL,
   PRIMARY KEY (`idsuppliers`),
   UNIQUE KEY `idsuppliers_UNIQUE` (`idsuppliers`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +156,32 @@ CREATE TABLE `suppliers` (
 
 LOCK TABLES `suppliers` WRITE;
 /*!40000 ALTER TABLE `suppliers` DISABLE KEYS */;
+INSERT INTO `suppliers` VALUES (1,'zxc','zxczxc'),(2,'123','123@mail.ru'),(3,'123vzxc','123zxc@gmail.com');
 /*!40000 ALTER TABLE `suppliers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `cringe` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`cringe`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'User1'),(2,'User1'),(3,'User1'),(4,'User1'),(5,'User1'),(6,'User1'),(7,'User1'),(8,'User1'),(9,'User1'),(10,'User2'),(11,'User2'),(12,'User2'),(13,'User2'),(14,'User2'),(15,'User2'),(16,'User2'),(17,'User2');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -171,4 +201,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-26 22:54:44
+-- Dump completed on 2022-05-30  0:05:14
