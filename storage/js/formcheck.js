@@ -1,6 +1,6 @@
 const form = document.getElementById("form");
 const err = document.getElementById('errors');
-const reg = new RegExp(/\d+/,"gm");
+const reg = new RegExp(/[0-9]+/,"g");
 form.addEventListener('submit',(e)=>{
     const namefield = document.getElementById("id_2")
     const amountfield = document.getElementById("id_3")
@@ -10,7 +10,7 @@ form.addEventListener('submit',(e)=>{
     amountfield.classList.remove("error")
     pricefield.classList.remove("error")
     let got_err = false;
-    if(!reg.test(amountfield.value)){
+    if(reg.test(amountfield.value)){
         amountfield.classList.add("error")
         err.innerText += " Некорректно введено число предметов \n"
         got_err = true;

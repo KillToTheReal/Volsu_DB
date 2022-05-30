@@ -1,6 +1,11 @@
 <?php 
 require_once "../util/database.php";
-
+session_start();
+if(!$_SESSION['logged'] || ($_SESSION['logged'] && !$_SESSION['admin']))
+{
+    $_SESSION['tberror'] = 'You cant have access to this table';
+    header("Location: ../index.php" );
+}
 $req=mysqli_query($mysql,"SELECT * FROM clients");
 $req1=mysqli_query($mysql,"SELECT * FROM clients");
 $vals = mysqli_fetch_assoc($req1);
@@ -17,7 +22,7 @@ $i = 1;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../source/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../source/style.css"/>
-    <title>Document</title>
+    <title>Client table</title>
 </head>
 <body>
     
@@ -34,6 +39,9 @@ $i = 1;
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="../storage/storage.php">Storage</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="../util/exit.php">Exit from: <?=$_SESSION['usermail']?></a>
                         </li>
                     </ul>    
                 </div>
