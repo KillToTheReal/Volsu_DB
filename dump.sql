@@ -130,7 +130,7 @@ CREATE TABLE `storage` (
 
 LOCK TABLES `storage` WRITE;
 /*!40000 ALTER TABLE `storage` DISABLE KEYS */;
-INSERT INTO `storage` VALUES (1,'Pencilsz',123123,'9632'),(2,'Paper',200,'600'),(3,'Boxes',123,'123'),(4,'Name',20,'200'),(5,'Inflatable Dicks',12,'500');
+INSERT INTO `storage` VALUES (1,'Pencilsz',1123,'9632'),(2,'Paper',200,'600'),(3,'Boxes',123,'123'),(4,'Name',20,'200'),(5,'Inflatable Dicks',12,'500');
 /*!40000 ALTER TABLE `storage` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -168,10 +168,12 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
-  `cringe` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  PRIMARY KEY (`cringe`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `user_email` varchar(100) NOT NULL,
+  `pass` varchar(100) NOT NULL,
+  `is_admin` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,7 +182,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'User1'),(2,'User1'),(3,'User1'),(4,'User1'),(5,'User1'),(6,'User1'),(7,'User1'),(8,'User1'),(9,'User1'),(10,'User2'),(11,'User2'),(12,'User2'),(13,'User2'),(14,'User2'),(15,'User2'),(16,'User2'),(17,'User2');
+INSERT INTO `users` VALUES (1,'admin@mail.ru','202cb962ac59075b964b07152d234b70',1),(2,'newuser@mail.com','ecb97ffafc1798cd2f67fcbc37226761',0),(3,'myuser@mail.ru','202cb962ac59075b964b07152d234b70',0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -201,4 +203,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-30  0:05:14
+-- Dump completed on 2022-05-30 23:46:01
