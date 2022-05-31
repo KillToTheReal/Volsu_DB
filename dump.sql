@@ -95,7 +95,7 @@ CREATE TABLE `outcome` (
   KEY `client_id_idx` (`client_id`),
   CONSTRAINT `item_id_out` FOREIGN KEY (`item_id`) REFERENCES `storage` (`item_id`),
   CONSTRAINT `outcome_FK` FOREIGN KEY (`client_id`) REFERENCES `clients` (`idclients`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,6 +104,7 @@ CREATE TABLE `outcome` (
 
 LOCK TABLES `outcome` WRITE;
 /*!40000 ALTER TABLE `outcome` DISABLE KEYS */;
+INSERT INTO `outcome` VALUES (1,1,200,1,'15000','2012-05-20'),(2,5,129,1,'2000','2024-03-12'),(3,5,200,1,'200','2013-05-15'),(4,4,12,13,'123','2012-12-23');
 /*!40000 ALTER TABLE `outcome` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,7 +174,7 @@ CREATE TABLE `users` (
   `pass` varchar(100) NOT NULL,
   `is_admin` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,7 +183,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin@mail.ru','202cb962ac59075b964b07152d234b70',1),(2,'newuser@mail.com','ecb97ffafc1798cd2f67fcbc37226761',0),(3,'myuser@mail.ru','202cb962ac59075b964b07152d234b70',0);
+INSERT INTO `users` VALUES (1,'admin@mail.ru','202cb962ac59075b964b07152d234b70',1),(2,'newuser@mail.com','ecb97ffafc1798cd2f67fcbc37226761',0),(4,'user@user.com','d41d8cd98f00b204e9800998ecf8427e',0),(5,'12123@gmail.com','202cb962ac59075b964b07152d234b70',0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -203,4 +204,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-30 23:46:01
+-- Dump completed on 2022-06-01  1:58:11
