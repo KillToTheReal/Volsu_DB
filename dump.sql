@@ -1,8 +1,8 @@
 CREATE DATABASE  IF NOT EXISTS `mydb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `mydb`;
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.29, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: mydb
+-- Host: localhost    Database: mydb
 -- ------------------------------------------------------
 -- Server version	8.0.29
 
@@ -39,7 +39,7 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
-INSERT INTO `clients` VALUES (1,'KillReal12','killreal@gmail.com'),(2,'zcxzx','123zxc@gmail.com'),(3,'Name','Mail.mail@mail.ru'),(12,'123z','123@mail.ru'),(13,'xczc','123@gmail.com'),(14,'1233','zxc@zxc.com');
+INSERT INTO `clients` VALUES (1,'KillToTheReal','123@mail.com'),(2,'zcxzx','123zxc@gmail.com'),(3,'Name','Mail.mail@mail.ru'),(12,'123z','123@mail.ru'),(13,'xczc','123@gmail.com'),(14,'1233','zxc@zxc.com');
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -63,7 +63,7 @@ CREATE TABLE `income` (
   KEY `sup_id_idx` (`supplier_id`),
   CONSTRAINT `income_FK` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`idsuppliers`),
   CONSTRAINT `item_id_in` FOREIGN KEY (`item_id`) REFERENCES `storage` (`item_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,6 +72,7 @@ CREATE TABLE `income` (
 
 LOCK TABLES `income` WRITE;
 /*!40000 ALTER TABLE `income` DISABLE KEYS */;
+INSERT INTO `income` VALUES (1,2,100,2,'2010-10-05','200'),(2,3,200,3,'2016-05-26','200');
 /*!40000 ALTER TABLE `income` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,7 +96,7 @@ CREATE TABLE `outcome` (
   KEY `client_id_idx` (`client_id`),
   CONSTRAINT `item_id_out` FOREIGN KEY (`item_id`) REFERENCES `storage` (`item_id`),
   CONSTRAINT `outcome_FK` FOREIGN KEY (`client_id`) REFERENCES `clients` (`idclients`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,7 +105,7 @@ CREATE TABLE `outcome` (
 
 LOCK TABLES `outcome` WRITE;
 /*!40000 ALTER TABLE `outcome` DISABLE KEYS */;
-INSERT INTO `outcome` VALUES (1,1,200,1,'15000','2012-05-20'),(2,5,129,1,'2000','2024-03-12'),(3,5,200,1,'200','2013-05-15'),(4,4,12,13,'123','2012-12-23');
+INSERT INTO `outcome` VALUES (1,1,200,1,'15000','2012-05-20'),(2,3,100,13,'2000','2024-03-12'),(3,5,200,3,'200','2013-05-15'),(4,4,12,13,'123','2012-12-23');
 /*!40000 ALTER TABLE `outcome` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,7 +149,7 @@ CREATE TABLE `suppliers` (
   `suppliermail` varchar(100) NOT NULL,
   PRIMARY KEY (`idsuppliers`),
   UNIQUE KEY `idsuppliers_UNIQUE` (`idsuppliers`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,7 +158,7 @@ CREATE TABLE `suppliers` (
 
 LOCK TABLES `suppliers` WRITE;
 /*!40000 ALTER TABLE `suppliers` DISABLE KEYS */;
-INSERT INTO `suppliers` VALUES (1,'zxc','zxczxc'),(2,'123','123@mail.ru'),(3,'123vzxc','123zxc@gmail.com');
+INSERT INTO `suppliers` VALUES (1,'zxc','zxczxc'),(2,'123','123@mail.ru'),(3,'123vzxc','123zxc@gmail.com'),(5,'Supplierzxc','mail@gmail.com');
 /*!40000 ALTER TABLE `suppliers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -204,4 +205,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-01  1:58:11
+-- Dump completed on 2022-06-01 20:20:24
