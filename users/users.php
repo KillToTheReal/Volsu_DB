@@ -41,6 +41,15 @@ $i = 1;
                             <a class="nav-link active" aria-current="page" href="../storage/storage.php">Storage</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="../users/users.php">Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="../income/income.php">Income</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="../outcome/outcome.php">Outcome</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="../util/exit.php">Exit from: <?=$_SESSION['usermail']?></a>
                         </li>
                     </ul>    

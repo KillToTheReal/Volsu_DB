@@ -5,15 +5,15 @@ if (!$_SESSION['logged'] || ($_SESSION['logged'] && !$_SESSION['admin'])) {
     $_SESSION['tberror'] = 'You cant have access to this table';
     header("Location: ../index.php");
 }
-$req = mysqli_query($mysql, "SELECT * FROM outcome");
-$req1 = mysqli_query($mysql, "SELECT * FROM outcome");
+$req = mysqli_query($mysql, "SELECT * FROM income");
+$req1 = mysqli_query($mysql, "SELECT * FROM income");
 $vals = mysqli_fetch_assoc($req1);
 $req1 = mysqli_fetch_all($req);
 $fields[] = [];
 $i = 1;
 
-$dropdown_clients = mysqli_query($mysql, "SELECT idclients,clientname FROM clients");
-$parse_clients = mysqli_fetch_all($dropdown_clients);
+$dropdown_suppliers = mysqli_query($mysql, "SELECT idsuppliers,suppliername FROM suppliers");
+$parse_suppliers = mysqli_fetch_all($dropdown_suppliers);
 $dropdown_items = mysqli_query($mysql, "SELECT item_id, item_name from storage ");
 $parse_items = mysqli_fetch_all($dropdown_items);
 ?>
@@ -104,7 +104,7 @@ $parse_items = mysqli_fetch_all($dropdown_items);
                         } else if ($j == 3) {
                             echo ('<td>');
                             echo ('<select name ="item' . $j . '">');
-                            foreach ($parse_clients as $ps) {
+                            foreach ($parse_suppliers as $ps) {
                                 if($data == $ps[0])
                                     echo ('<option selected value =' . $ps[0] . '>' . "ID:" . $ps[0] . " " . $ps[1] . '</option>');
                                 else
@@ -144,7 +144,7 @@ $parse_items = mysqli_fetch_all($dropdown_items);
                         } else if ($i == 4) {
                             echo ('<label class="sr-only" for="inlineFormInput" >' . $fields[$i] . '</label>');
                             echo ('<select class="form-select mb-2" name ="name_' . $i . '">');
-                            foreach ($parse_clients as $ps) {
+                            foreach ($parse_suppliers as $ps) {
                                 echo ('<option value =' . $ps[0] . '>' . "ID:" . $ps[0] . " " . $ps[1] . '</option>');
                             }
                             echo ('</select>');

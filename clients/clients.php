@@ -10,6 +10,8 @@ $req=mysqli_query($mysql,"SELECT * FROM clients");
 $req1=mysqli_query($mysql,"SELECT * FROM clients");
 $vals = mysqli_fetch_assoc($req1);
 $req1 = mysqli_fetch_all($req);
+
+
 $fields[] = [];
 $i = 1;
 ?>
@@ -41,8 +43,18 @@ $i = 1;
                             <a class="nav-link active" aria-current="page" href="../storage/storage.php">Storage</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="../users/users.php">Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="../income/income.php">Income</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="../outcome/outcome.php">Outcome</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="../util/exit.php">Exit from: <?=$_SESSION['usermail']?></a>
                         </li>
+                        
                     </ul>    
                 </div>
             </div>
