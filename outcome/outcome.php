@@ -27,7 +27,7 @@ $parse_items = mysqli_fetch_all($dropdown_items);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../source/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="../source/style.css" />
-    <title>Client table</title>
+    <title>Outcome table</title>
 </head>
 
 <body>
@@ -38,6 +38,9 @@ $parse_items = mysqli_fetch_all($dropdown_items);
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto mb-12 mb-lg-0">
                     <li class="nav-item">
+                        <a class="nav-link active" href="../queryfield.php">Query </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link active" href="../clients/clients.php">Clients </a>
                     </li>
                     <li class="nav-item">
@@ -47,14 +50,14 @@ $parse_items = mysqli_fetch_all($dropdown_items);
                         <a class="nav-link active" aria-current="page" href="../storage/storage.php">Storage</a>
                     </li>
                     <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="../users/users.php">Users</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="../income/income.php">Income</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="../outcome/outcome.php">Outcome</a>
-                        </li>
+                        <a class="nav-link active" aria-current="page" href="../users/users.php">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="../income/income.php">Income</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="../outcome/outcome.php">Outcome</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="../util/exit.php">Exit from: <?= $_SESSION['usermail'] ?></a>
                     </li>
@@ -93,22 +96,22 @@ $parse_items = mysqli_fetch_all($dropdown_items);
                             echo ('</td>');
                         } else if ($j == 1) {
                             echo ('<td>');
-                            echo ('<select name ="item'.$j.'">');
+                            echo ('<select name ="item' . $j . '">');
                             foreach ($parse_items as $ps) {
-                                if($data == $ps[0])
+                                if ($data == $ps[0])
                                     echo ('<option selected value =' . $ps[0] . '>' . "ID:" . $ps[0] . " " . $ps[1] . '</option>');
                                 else
-                                    echo('<option value =' . $ps[0] . '>' . "ID:" . $ps[0] . " " . $ps[1] . '</option>');
+                                    echo ('<option value =' . $ps[0] . '>' . "ID:" . $ps[0] . " " . $ps[1] . '</option>');
                             }
                             echo ('</select></td>');
                         } else if ($j == 3) {
                             echo ('<td>');
                             echo ('<select name ="item' . $j . '">');
                             foreach ($parse_clients as $ps) {
-                                if($data == $ps[0])
+                                if ($data == $ps[0])
                                     echo ('<option selected value =' . $ps[0] . '>' . "ID:" . $ps[0] . " " . $ps[1] . '</option>');
                                 else
-                                    echo('<option value =' . $ps[0] . '>' . "ID:" . $ps[0] . " " . $ps[1] . '</option>');
+                                    echo ('<option value =' . $ps[0] . '>' . "ID:" . $ps[0] . " " . $ps[1] . '</option>');
                             }
                             echo ('</select></td>');
                         } else {

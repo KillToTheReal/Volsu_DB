@@ -22,7 +22,7 @@ $i = 1;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../source/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../source/style.css"/>
-    <title>Client table</title>
+    <title>Users table</title>
 </head>
 <body>
     
@@ -31,6 +31,9 @@ $i = 1;
                 <a class="navbar-brand" href="../"> Home </a>
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav me-auto mb-12 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="../queryfield.php">Query </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="../clients/clients.php">Clients </a>
                         </li>

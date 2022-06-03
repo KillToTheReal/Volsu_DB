@@ -5,12 +5,12 @@ if (!$_SESSION['logged'] || ($_SESSION['logged'] && !$_SESSION['admin'])) {
     $_SESSION['tberror'] = 'You cant have access to this table';
     header("Location: ../index.php");
 }
-if(count($_POST)>0){
+if (count($_POST) > 0) {
     $sort = '';
-    foreach($_POST as $key=>$value){
-        $sort = $sort.$key.',';
+    foreach ($_POST as $key => $value) {
+        $sort = $sort . $key . ',';
     }
-    $sort = rtrim($sort,",");
+    $sort = rtrim($sort, ",");
     $req = mysqli_query($mysql, "SELECT * FROM income order by $sort ");
 } else {
     $req = mysqli_query($mysql, "SELECT * FROM income");
@@ -35,7 +35,7 @@ $parse_items = mysqli_fetch_all($dropdown_items);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../source/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="../source/style.css" />
-    <title>Client table</title>
+    <title>Income table</title>
 </head>
 
 <body>
@@ -46,6 +46,9 @@ $parse_items = mysqli_fetch_all($dropdown_items);
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto mb-12 mb-lg-0">
                     <li class="nav-item">
+                        <a class="nav-link active" href="../queryfield.php">Query </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link active" href="../clients/clients.php">Clients </a>
                     </li>
                     <li class="nav-item">
@@ -55,14 +58,14 @@ $parse_items = mysqli_fetch_all($dropdown_items);
                         <a class="nav-link active" aria-current="page" href="../storage/storage.php">Storage</a>
                     </li>
                     <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="../users/users.php">Users</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="../income/income.php">Income</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="../outcome/outcome.php">Outcome</a>
-                        </li>
+                        <a class="nav-link active" aria-current="page" href="../users/users.php">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="../income/income.php">Income</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="../outcome/outcome.php">Outcome</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="../util/exit.php">Exit from: <?= $_SESSION['usermail'] ?></a>
                     </li>
@@ -73,26 +76,25 @@ $parse_items = mysqli_fetch_all($dropdown_items);
     <table class="table">
         <form action="./income.php" method="POST">
             <div class="row">
-           <?php foreach ($vals as $key => $value) {
-               echo(' <div class="col">
-                        <input type ="checkbox" name="'.$key.'" value="'.$key.'" id="check'.$key.'">
-                        <label for="check'.$key.'">'.$key.'</label>
-                        </div>
-               ');
-           }
+                <?php foreach ($vals as $key => $value) {
+                    echo (' <div class="col">
+                        <input type ="checkbox" name="' . $key . '" value="' . $key . '" id="check' . $key . '">
+                        <label for="check' . $key . '">' . $key . '</label>
+                        </div>');
+                }
 
                 ?>
-                <div class = "col">
+                <div class="col">
                     <button type="submit" class="btn btn-success"> sort by</button>
                 </div>
-            
+
         </form>
         <thead class="thead-light">
             <tr>
                 <th scope="col">#</th>
                 <?php
                 foreach ($vals as $key => $value) {
-                    echo ('<th scope="col">'.'<a href="./income.php?sort='.$key.'" >' . $key . '</a></th>');
+                    echo ('<th scope="col">' . '<a href="./income.php?sort=' . $key . '" >' . $key . '</a></th>');
                     array_push($fields, $key);
                 }
                 ?>
@@ -116,29 +118,26 @@ $parse_items = mysqli_fetch_all($dropdown_items);
                             echo ('</td>');
                         } else if ($j == 1) {
                             echo ('<td>');
-                            echo ('<select name ="item'.$j.'">');
+                            echo ('<select name ="item' . $j . '">');
                             foreach ($parse_items as $ps) {
-                                if($data == $ps[0])
+                                if ($data == $ps[0])
                                     echo ('<option selected value =' . $ps[0] . '>' . "ID:" . $ps[0] . " " . $ps[1] . '</option>');
                                 else
-                                    echo('<option value =' . $ps[0] . '>' . "ID:" . $ps[0] . " " . $ps[1] . '</option>');
+                                    echo ('<option value =' . $ps[0] . '>' . "ID:" . $ps[0] . " " . $ps[1] . '</option>');
                             }
                             echo ('</select></td>');
-
-                        } else if($j==2 || $j ==5 ) {
+                        } else if ($j == 2 || $j == 5) {
                             echo ('<td> <input type="number" id="' . "idtb" . $j . $key . '" name="' . "item" . $j . '" placeholder="' . $data . '" value="' . $data . '"></td>');
-                        } 
-                        else if($j==4 ) {
+                        } else if ($j == 4) {
                             echo ('<td> <input type="date" id="' . "idtb" . $j . $key . '" name="' . "item" . $j . '" placeholder="' . $data . '" value="' . $data . '"></td>');
-                        } 
-                        else if ($j == 3) {
+                        } else if ($j == 3) {
                             echo ('<td>');
                             echo ('<select name ="item' . $j . '">');
                             foreach ($parse_suppliers as $ps) {
-                                if($data == $ps[0])
+                                if ($data == $ps[0])
                                     echo ('<option selected value =' . $ps[0] . '>' . "ID:" . $ps[0] . " " . $ps[1] . '</option>');
                                 else
-                                    echo('<option value =' . $ps[0] . '>' . "ID:" . $ps[0] . " " . $ps[1] . '</option>');
+                                    echo ('<option value =' . $ps[0] . '>' . "ID:" . $ps[0] . " " . $ps[1] . '</option>');
                             }
                             echo ('</select></td>');
                         } else {

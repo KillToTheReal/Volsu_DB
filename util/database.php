@@ -7,10 +7,11 @@ if ($mysql->connect_errno) {
     echo( $mysql->connect_error);
     exit();
 }
+
+#just in case
 try {
 $db = new pdo('mysql:host=127.0.0.1; dbname=mydb', 'root' , 'my-secret-pw' );
     } catch(PDOException $err) {
         die('Connection Error :' . $err->getMessage() );
     }
-
 ?>
