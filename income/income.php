@@ -5,13 +5,21 @@ if (!$_SESSION['logged'] || ($_SESSION['logged'] && !$_SESSION['admin'])) {
     $_SESSION['tberror'] = 'You cant have access to this table';
     header("Location: ../index.php");
 }
-$req = mysqli_query($mysql, "SELECT * FROM income");
+if(count($_POST)>0){
+    $sort = '';
+    foreach($_POST as $key=>$value){
+        $sort = $sort.$key.',';
+    }
+    $sort = rtrim($sort,",");
+    $req = mysqli_query($mysql, "SELECT * FROM income order by $sort ");
+} else {
+    $req = mysqli_query($mysql, "SELECT * FROM income");
+}
 $req1 = mysqli_query($mysql, "SELECT * FROM income");
 $vals = mysqli_fetch_assoc($req1);
 $req1 = mysqli_fetch_all($req);
 $fields[] = [];
 $i = 1;
-
 $dropdown_suppliers = mysqli_query($mysql, "SELECT idsuppliers,suppliername FROM suppliers");
 $parse_suppliers = mysqli_fetch_all($dropdown_suppliers);
 $dropdown_items = mysqli_query($mysql, "SELECT item_id, item_name from storage ");
@@ -62,14 +70,29 @@ $parse_items = mysqli_fetch_all($dropdown_items);
             </div>
         </div>
     </nav>
-
     <table class="table">
+        <form action="./income.php" method="POST">
+            <div class="row">
+           <?php foreach ($vals as $key => $value) {
+               echo(' <div class="col">
+                        <input type ="checkbox" name="'.$key.'" value="'.$key.'" id="check'.$key.'">
+                        <label for="check'.$key.'">'.$key.'</label>
+                        </div>
+               ');
+           }
+
+                ?>
+                <div class = "col">
+                    <button type="submit" class="btn btn-success"> sort by</button>
+                </div>
+            
+        </form>
         <thead class="thead-light">
             <tr>
                 <th scope="col">#</th>
                 <?php
                 foreach ($vals as $key => $value) {
-                    echo ('<th scope="col">' . $key . '</th>');
+                    echo ('<th scope="col">'.'<a href="./income.php?sort='.$key.'" >' . $key . '</a></th>');
                     array_push($fields, $key);
                 }
                 ?>
@@ -101,7 +124,14 @@ $parse_items = mysqli_fetch_all($dropdown_items);
                                     echo('<option value =' . $ps[0] . '>' . "ID:" . $ps[0] . " " . $ps[1] . '</option>');
                             }
                             echo ('</select></td>');
-                        } else if ($j == 3) {
+
+                        } else if($j==2 || $j ==5 ) {
+                            echo ('<td> <input type="number" id="' . "idtb" . $j . $key . '" name="' . "item" . $j . '" placeholder="' . $data . '" value="' . $data . '"></td>');
+                        } 
+                        else if($j==4 ) {
+                            echo ('<td> <input type="date" id="' . "idtb" . $j . $key . '" name="' . "item" . $j . '" placeholder="' . $data . '" value="' . $data . '"></td>');
+                        } 
+                        else if ($j == 3) {
                             echo ('<td>');
                             echo ('<select name ="item' . $j . '">');
                             foreach ($parse_suppliers as $ps) {
