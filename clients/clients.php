@@ -6,7 +6,7 @@ if(!$_SESSION['logged'] || ($_SESSION['logged'] && !$_SESSION['admin']))
     $_SESSION['tberror'] = 'You cant have access to this table';
     header("Location: ../index.php" );
 }
-$req=mysqli_query($mysql,"SELECT * FROM clients");
+$req=mysqli_query($mysql,"SELECT * FROM clients order by clients.idclients desc");
 $req1=mysqli_query($mysql,"SELECT * FROM clients");
 $vals = mysqli_fetch_assoc($req1);
 $req1 = mysqli_fetch_all($req);

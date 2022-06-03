@@ -3,18 +3,12 @@ require_once "./database.php";
 session_start();
 $mail = $_POST['mail'];
 $pass = $_POST['pass'];
-$toparse = mysqli_query($mysql, "SELECT user_email FROM users where user_email = '$mail' ");
-$parsed = mysqli_fetch_row($toparse);
-if($parsed){
-    
-    header('Location: ../index.php?error=user_exists');
-    die();
-} else {
-    
-    $hash = hash('md5', $pass);
-    mysqli_query($mysql, "INSERT INTO users (user_email, pass) VALUES ('$mail','$hash')");
-    $_SESSION['logged'] = true;
-    $_SESSION['usermail'] = $mail;
-    header('Location: ../index.php');
-}
+$adm = 0;
+$hash = hash('md5', $pass);
+$qry = mysqli_query($mysql, "CALL register_new_user('$mail','$hash','$adm')");
+print_r(mysqli_fetch_assoc($qry));
+    // $_SESSION['logged'] = true;
+    // $_SESSION['usermail'] = $mail;
+    // header('Location: ../index.php');
+
 ?>
