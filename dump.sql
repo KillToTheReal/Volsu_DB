@@ -1,8 +1,8 @@
 CREATE DATABASE  IF NOT EXISTS `mydb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `mydb`;
--- MySQL dump 10.13  Distrib 8.0.29, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
--- Host: localhost    Database: mydb
+-- Host: 127.0.0.1    Database: mydb
 -- ------------------------------------------------------
 -- Server version	8.0.29
 
@@ -123,7 +123,7 @@ CREATE TABLE `storage` (
   `current_price` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`item_id`),
   UNIQUE KEY `item_id_UNIQUE` (`item_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -132,7 +132,7 @@ CREATE TABLE `storage` (
 
 LOCK TABLES `storage` WRITE;
 /*!40000 ALTER TABLE `storage` DISABLE KEYS */;
-INSERT INTO `storage` VALUES (1,'Pencilsz',1123,'9632'),(2,'Paper',200,'600'),(3,'Boxes',123,'123'),(4,'Name',20,'200'),(5,'Inflatable Dicks',12,'500'),(6,'abcd',499,'200'),(7,'123z',499,'200');
+INSERT INTO `storage` VALUES (1,'Pencilsz',1123,'9632'),(2,'Paper',200,'600'),(3,'Boxes',123,'123'),(4,'Name',20,'200'),(5,'Inflatable Dicks',12,'500'),(11,'namename',450,'200'),(28,'namename',450,'200');
 /*!40000 ALTER TABLE `storage` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -263,4 +263,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-03 23:38:05
+-- Dump completed on 2022-06-04  0:39:30
