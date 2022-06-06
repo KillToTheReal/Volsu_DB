@@ -5,6 +5,31 @@ if (!$_SESSION['logged'] || ($_SESSION['logged'] && !$_SESSION['admin'])) {
     $_SESSION['tberror'] = 'You cant have access to this table';
     header("Location: ../index.php");
 }
+#SEARCH
+if(isset($_POST['query'])){
+$query  = $_POST['query'];
+$query = mysqli_query($mysql, "SELECT check_id, outcome.item_id, outcome.amount, outcome.client_id, outcome.price_out, outcome.date_out, clients.clientname, storage.item_name
+FROM outcome INNER JOIN clients ON outcome.client_id = clients.idclients INNER JOIN storage ON storage.item_id = outcome.item_id
+WHERE storage.item_name LIKE '%$query%' OR clients.clientname LIKE '%$query%' OR outcome.item_id LIKE '%$query%' OR outcome.amount LIKE '%$query%' OR outcome.price_out LIKE '%$query%'");
+
+$query2 = mysqli_query($mysql,"SELECT check_id, outcome.item_id, outcome.amount, outcome.client_id, outcome.price_out, outcome.date_out, clients.clientname, storage.item_name
+FROM outcome INNER JOIN clients ON outcome.client_id = clients.idclients INNER JOIN storage ON storage.item_id = outcome.item_id LIMIT 1");
+if(isset($query)){
+    if(is_object($query)){
+    $parse_search = mysqli_fetch_all($query);
+    if(count($parse_search)== 0){
+        unset($parse_search);
+    }
+    $parse_heads = mysqli_fetch_assoc($query2);
+    }
+}
+else {
+    $error = "Nothing found";
+}
+}
+unset($_POST['query']);
+
+
 $req = mysqli_query($mysql, "SELECT * FROM outcome");
 $req1 = mysqli_query($mysql, "SELECT * FROM outcome");
 $vals = mysqli_fetch_assoc($req1);
@@ -62,9 +87,44 @@ $parse_items = mysqli_fetch_all($dropdown_items);
                         <a class="nav-link active" aria-current="page" href="../util/exit.php">Exit from: <?= $_SESSION['usermail'] ?></a>
                     </li>
                 </ul>
+                <form action="./outcome.php" method="POST" class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" required name="query" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
             </div>
         </div>
     </nav>
+    <?php
+
+    if (isset($error)){
+        echo('<h2> Nothing found </h2>');
+    }
+    if (isset($parse_search)) {
+            echo ('<h2>Search</h2><table class="table">');
+            
+        ?>
+        <tr>
+            <?php
+            foreach ($parse_heads as $key => $val) {
+                echo ('<th scope="col">' . $key . '</th>');
+            }
+            ?>
+        </tr>
+        <?php
+            foreach ($parse_search as $key => $val) {
+                echo ('<tr scope="row">');
+
+
+                foreach ($val as $data) {
+                    echo ('<td scope="col">' . $data . '</td>');
+                }
+                echo ('</tr>');
+            }
+            echo ('</table>');
+        }
+        ?>
+
+
 
     <table class="table">
         <thead class="thead-light">
