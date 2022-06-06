@@ -19,12 +19,10 @@ if(isset($query)){
     $parse_search = mysqli_fetch_all($query);
     if(count($parse_search)== 0){
         unset($parse_search);
+        $error = "Nothing found";
     }
     $parse_heads = mysqli_fetch_assoc($query2);
     }
-}
-else {
-    $error = "Nothing found";
 }
 }
 unset($_POST['query']);
